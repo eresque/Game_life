@@ -1,6 +1,6 @@
-from random import randrange
+from random import randrange, randint
 
-x = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+x = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1] # Массив создан так, чтобы при выборе между состоянием 0/1, предпочтение отдавалось 0
 
 
 class Field:
@@ -42,10 +42,10 @@ class Cell:
         self.condition = cond
         self.neighbours = []
 
-    def neighbour_append(self, nei_cell):
+    def neighbour_append(self, nei_cell): # Добавление клетки в список соседей
         self.neighbours.append(nei_cell)
 
-    def neig_cond(self):
+    def neig_cond(self):                  # Подсчет соседних заполненных клетов
         k = 0
         for i in self.neighbours:
             k += i.condition
