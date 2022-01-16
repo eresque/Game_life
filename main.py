@@ -5,8 +5,8 @@ import pygame as pg
 pg.init()
 
 
-cell_width, cell_height = 120, 80   # Ввод кол-ва клеток по горизонтали и вертикали
-pixel_cell_size = 12                # Ввод длины стороны клетки в пикселях
+cell_width, cell_height = 180, 120  # Ввод кол-ва клеток по горизонтали и вертикали
+pixel_cell_size = 7                # Ввод длины стороны клетки в пикселях
 
 Gameboard = Field(cell_height, cell_width) # Инициализация класса поля
 Gameboard.neighbour_determination()        # Определение соседей каждой клетки поля
@@ -21,11 +21,10 @@ pg.display.set_caption("ML&DL\Winter'22: Игра жизнь")
 pg.display.set_icon(pg.image.load("Tinkoff.bmp"))
 clock = pg.time.Clock()
 FPS = 20                            # Кол-во кадров, отрисовываемых в секунду
-BLACK = (0, 0, 0)
 PURPLE = (107, 63, 160)
 WHITE = (255, 255, 255)
 
-# Функция, рисующая разметку поля (можно включить при желании раскомментив строки 30- 35; 43)
+# Функция, рисующая разметку поля (можно включить при желании раскомментив строки 29 - 34; 42)
 
 # def draw_net():
 #     sc.fill(pg.Color('white'))
