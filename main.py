@@ -1,4 +1,5 @@
 from Classes import Field
+from functions import cell_condition_manual_choice, cell_condition_rand_choice
 import pygame as pg
 
 pg.init()
@@ -9,6 +10,9 @@ pixel_cell_size = 12                # Ввод длины стороны кле�
 
 Gameboard = Field(cell_height, cell_width) # Инициализация класса поля
 Gameboard.neighbour_determination()        # Определение соседей каждой клетки поля
+
+cell_condition_rand_choice(Gameboard)     # по дефолту стоит авто заполнение
+# cell_condition_manual_choice(Gameboard) # можно раскомментить эту функцию, чтобы заполнить поле в ручную
 
 resolution = width, height = cell_width * pixel_cell_size + 1, cell_height * pixel_cell_size + 1
 sc = pg.display.set_mode(resolution)
@@ -21,7 +25,7 @@ BLACK = (0, 0, 0)
 PURPLE = (107, 63, 160)
 WHITE = (255, 255, 255)
 
-# Функция, рисующая разметку поля (можно включить при желании раскомментив строки 21-26; 35)
+# Функция, рисующая разметку поля (можно включить при желании раскомментив строки 30- 35; 43)
 
 # def draw_net():
 #     sc.fill(pg.Color('white'))
