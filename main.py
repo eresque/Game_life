@@ -1,14 +1,19 @@
 from Classes import Field
+from functions import cell_condition_rand_choice, cell_condition_manual_choice
 import pygame as pg
 
 pg.init()
 
+cell_width, cell_height = 300, 150  # Ввод кол-ва клеток по горизонтали и вертикали
+pixel_cell_size = 5  # Ввод длины стороны клетки в пикселях
 
-cell_width, cell_height = 300, 150   # Ввод кол-ва клеток по горизонтали и вертикали
-pixel_cell_size = 5              # Ввод длины стороны клетки в пикселях
+Gameboard = Field(cell_height, cell_width)
+Gameboard.neighbour_determination()  # Определение соседей каждой клетки поля
 
-Gameboard = Field(cell_height, cell_width) # Инициализация класса поля
-Gameboard.neighbour_determination()        # Определение соседей каждой клетки поля
+cell_condition_rand_choice(Gameboard)    # дефолтно стоит автозаполнение поля клетками
+
+# cell_condition_manual_choice(Gameboard) # функция ручного заполнения, при желании можно раскомментить и самому
+                                          # заполнить поле, только советую в таком случае уменьшить размеры поля
 
 resolution = width, height = cell_width * pixel_cell_size + 1, cell_height * pixel_cell_size + 1
 sc = pg.display.set_mode(resolution)
@@ -16,12 +21,12 @@ sc.fill(pg.Color('white'))
 pg.display.set_caption("ML&DL\Winter'22: Игра жизнь")
 pg.display.set_icon(pg.image.load("Tinkoff.bmp"))
 clock = pg.time.Clock()
-FPS = 20                            # Кол-во кадров, отрисовываемых в секунду
+FPS = 20  # Кол-во кадров, отрисовываемых в секунду
 BLACK = (0, 0, 0)
 PURPLE = (107, 63, 160)
 WHITE = (255, 255, 255)
 
-# Функция, рисующая разметку поля (можно включить при желании раскомментив строки 24-31; 39)
+# Функция, рисующая разметку поля (можно включить при желании раскомментив строки 31-36; 44)
 
 # def draw_net():
 #     sc.fill(pg.Color('white'))

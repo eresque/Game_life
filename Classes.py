@@ -1,13 +1,8 @@
-from random import randrange, randint
-
-x = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1] # Массив создан так, чтобы при выборе между состоянием 0/1, предпочтение отдавалось 0
-
-
 class Field:
     def __init__(self, height, width):
         self.height = height
         self.width = width
-        self.cell_matrix = [[Cell([i, j], x[randrange(0, 10)]) for i in range(width)] for j in range(height)]
+        self.cell_matrix = [[Cell([i, j], 0) for i in range(width)] for j in range(height)]
         self.temp_cell_matrix = [[0 for i in range(width)] for j in range(height)]
 
     def neighbour_determination(self):
