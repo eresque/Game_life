@@ -1,2 +1,1 @@
-��# life_game
-Реализация задачи №6: Игра жизнь.
+Python realisation of "game life" task
