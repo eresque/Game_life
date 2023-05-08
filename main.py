@@ -4,23 +4,21 @@ import pygame as pg
 
 pg.init()
 
+cell_width, cell_height = 150, 90  # Ввод кол-ва клеток по горизонтали и вертикали
+pixel_cell_size = 7  # Ввод длины стороны клетки в пикселях
 
-cell_width, cell_height = 180, 120  # Ввод кол-ва клеток по горизонтали и вертикали
-pixel_cell_size = 7                # Ввод длины стороны клетки в пикселях
+Gameboard = Field(cell_height, cell_width)  # Инициализация класса поля
+Gameboard.neighbour_determination()  # Определение соседей каждой клетки поля
 
-Gameboard = Field(cell_height, cell_width) # Инициализация класса поля
-Gameboard.neighbour_determination()        # Определение соседей каждой клетки поля
-
-cell_condition_rand_choice(Gameboard)     # по дефолту стоит авто заполнение
+cell_condition_rand_choice(Gameboard)  # по дефолту стоит авто заполнение
 # cell_condition_manual_choice(Gameboard) # можно раскомментить эту функцию, чтобы заполнить поле в ручную
 
 resolution = width, height = cell_width * pixel_cell_size + 1, cell_height * pixel_cell_size + 1
 sc = pg.display.set_mode(resolution)
 sc.fill(pg.Color('white'))
-pg.display.set_caption("ML&DL\Winter'22: Игра жизнь")
-pg.display.set_icon(pg.image.load("Tinkoff.bmp"))
+pg.display.set_caption("Game life")
 clock = pg.time.Clock()
-FPS = 20                            # Кол-во кадров, отрисовываемых в секунду
+FPS = 20  # Кол-во кадров, отрисовываемых в секунду
 PURPLE = (107, 63, 160)
 WHITE = (255, 255, 255)
 
@@ -44,15 +42,19 @@ while True:
     for i in range(cell_height):
         for j in range(cell_width):
             if Gameboard.cell_matrix[i][j].condition == 0 and Gameboard.cell_matrix[i][j].neig_cond() == 3:
-                pg.draw.rect(sc, PURPLE, (j * pixel_cell_size + 2, i * pixel_cell_size + 2, pixel_cell_size - 2, pixel_cell_size - 2))
+                pg.draw.rect(sc, PURPLE, (
+                j * pixel_cell_size + 2, i * pixel_cell_size + 2, pixel_cell_size - 2, pixel_cell_size - 2))
                 Gameboard.temp_cell_matrix[i][j] = 1
                 continue
-            if Gameboard.cell_matrix[i][j].condition == 1 and (2 == Gameboard.cell_matrix[i][j].neig_cond() or Gameboard.cell_matrix[i][j].neig_cond() == 3):
-                pg.draw.rect(sc, PURPLE, (j * pixel_cell_size + 2, i * pixel_cell_size + 2, pixel_cell_size - 2, pixel_cell_size - 2))
+            if Gameboard.cell_matrix[i][j].condition == 1 and (
+                    2 == Gameboard.cell_matrix[i][j].neig_cond() or Gameboard.cell_matrix[i][j].neig_cond() == 3):
+                pg.draw.rect(sc, PURPLE, (
+                j * pixel_cell_size + 2, i * pixel_cell_size + 2, pixel_cell_size - 2, pixel_cell_size - 2))
                 Gameboard.temp_cell_matrix[i][j] = 1
                 continue
             else:
-                pg.draw.rect(sc, WHITE, (j * pixel_cell_size + 2, i * pixel_cell_size + 2, pixel_cell_size - 2, pixel_cell_size - 2))
+                pg.draw.rect(sc, WHITE, (
+                j * pixel_cell_size + 2, i * pixel_cell_size + 2, pixel_cell_size - 2, pixel_cell_size - 2))
                 Gameboard.temp_cell_matrix[i][j] = 0
 
     Gameboard.cond_changes()
